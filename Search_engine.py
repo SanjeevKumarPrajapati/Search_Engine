@@ -6,6 +6,7 @@ from pyautogui import click
 from pyautogui import press
 from keyboard import write
 from time import sleep
+import speech_recognition as sr
 import pyautogui
 import time
 import os
@@ -14,6 +15,23 @@ a=Tk()
 a.minsize(1260,700)
 a.maxsize(1260,700)
 a.title("Search Engine")
+def take():
+            r=sr.Recognizer()
+            with sr.Microphone() as source:
+                print("    listening.....")
+                r.pause_threshold=1
+                audio=r.listen(source,timeout=1,phrase_time_limit=5)
+            try:
+                print("    Recognizing......")
+                recog=r.recognize_google(audio,language='en-in')
+                print(f"    You said : - {a}\n")
+            except:
+                    say("    Say that again please....")
+                    return "none"
+            return recog
+def speak():
+    a=take()
+    wb.open(a)
 def news():
     wb.open("https://www.amarujala.com/")
     wb.open("https://www.jagran.com/sports-news-hindi.html?itm_medium=sports&itm_source=dsktp&itm_campaign=hamburger")
@@ -80,6 +98,7 @@ lb1=Label(a,text="e",font=("Arial",50,"bold"),fg="red").place(x=740,y=50)
 var=StringVar()
 et=Entry(a,fg="green",font=("Arial",25),borderwidth = 10,textvariable=var).place(x=460,y=160)
 btn=Button(a,text="Search",bd=7,bg="orange",font=("Arial",18,"bold"),command=search).place(x=860,y=160)
+bt1=Button(a,text="Speak",bd=7,bg="green",font=("Arial",18,"bold"),command=speak).place(x=990,y=160)
 lbn=Label(a,text="=============================================================================================================================================================").place(x=0,y=230)
 lbn=Label(a,text="=============================================================================================================================================================").place(x=0,y=245)
 btn1=Button(a,text="YouTube",bd=9,bg="lime",font=("Arial",18,"bold"),command=you_tube).place(x=40,y=280)
