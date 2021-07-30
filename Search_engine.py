@@ -11,7 +11,8 @@ import time
 import os
 import winshell
 a=Tk()
-a.geometry("1260x700")
+a.minsize(1260,700)
+a.maxsize(1260,700)
 a.title("Search Engine")
 def news():
     wb.open("https://www.amarujala.com/")
