@@ -1,20 +1,30 @@
 from tkinter import *
 import webbrowser as wb
 import subprocess
+import tkinter
 import ctypes
 from pyautogui import click
 from pyautogui import press
 from keyboard import write
 from time import sleep
-import speech_recognition as sr
+from PIL import ImageTk, Image
 import pyautogui
+import speech_recognition as sr
 import time
 import os
 import winshell
 a=Tk()
+#a.geometry("1260x700")
+#a.geometry("1366x768+0+0")
 a.minsize(1260,700)
 a.maxsize(1260,700)
 a.title("Search Engine")
+a.iconbitmap("ico.ico")
+image1 = Image.open('google4.jpg').resize((1260,700))
+test = ImageTk.PhotoImage(image1)
+label1 = tkinter.Label(image=test)
+label1.image = test
+label1.place(x=0, y=-115)
 def take():
             r=sr.Recognizer()
             with sr.Microphone() as source:
@@ -26,7 +36,7 @@ def take():
                 recog=r.recognize_google(audio,language='en-in')
                 print(f"    You said : - {a}\n")
             except:
-                    say("    Say that again please....")
+                    print("Say that again please")
                     return "none"
             return recog
 def speak():
@@ -89,41 +99,35 @@ def amazon():
     wb.open("https://www.amazon.com/")
 def flipcart():
     wb.open("https://www.flipkart.com/")
-lb=Label(a,text="G",font=("Arial",50,"bold"),fg="blue").place(x=520,y=50)
-lb1=Label(a,text="o",font=("Arial",50,"bold"),fg="red").place(x=570,y=50)
-lb1=Label(a,text="o",font=("Arial",50,"bold"),fg="orange").place(x=620,y=50)
-lb1=Label(a,text="g",font=("Arial",50,"bold"),fg="blue").place(x=670,y=50)
-lb1=Label(a,text="l",font=("Arial",50,"bold"),fg="green").place(x=720,y=50)
-lb1=Label(a,text="e",font=("Arial",50,"bold"),fg="red").place(x=740,y=50)
+lb=Label(a,text="Search Engine",bg="#FFFFFD",font=("Arial",30,"bold")).place(x=520,y=10)
 var=StringVar()
-et=Entry(a,fg="green",font=("Arial",25),borderwidth = 10,textvariable=var).place(x=460,y=160)
-btn=Button(a,text="Search",bd=7,bg="orange",font=("Arial",18,"bold"),command=search).place(x=860,y=160)
-bt1=Button(a,text="Speak",bd=7,bg="green",font=("Arial",18,"bold"),command=speak).place(x=990,y=160)
-lbn=Label(a,text="=============================================================================================================================================================").place(x=0,y=230)
-lbn=Label(a,text="=============================================================================================================================================================").place(x=0,y=245)
-btn1=Button(a,text="YouTube",bd=9,bg="lime",font=("Arial",18,"bold"),command=you_tube).place(x=40,y=280)
-btn1=Button(a,text="Facebook",bd=9,bg="blue",font=("Arial",18,"bold"),command=facebook).place(x=315,y=280)
-btn1=Button(a,text="Instagram",bd=9,bg="green",font=("Arial",18,"bold"),command=instagram).place(x=560,y=280)
-btn1=Button(a,text="Gmail",bd=9,bg="yellow",font=("Arial",18,"bold"),command=gmail).place(x=870,y=280)
-btn1=Button(a,text="Chrome",bd=9,bg="pink",font=("Arial",18,"bold"),command=chrome).place(x=1100,y=280)
+et=Entry(a,fg="green",font=("Arial",25),borderwidth = 8,textvariable=var)
+et.insert(1,"Search By Google")
+et.place(x=460,y=160)
 
-btn1=Button(a,text="Edge",bd=9,bg="violet",font=("Arial",18,"bold"),command=edge).place(x=55,y=380)
-btn1=Button(a,text="Dev C++",bd=9,font=("Arial",18,"bold"),command=dev).place(x=325,y=380)
-btn1=Button(a,text="Window Lock",bd=9,bg="lime",font=("Arial",18,"bold"),command=win_lock).place(x=540,y=380)
-btn1=Button(a,text="Amazon",bd=9,bg="brown",font=("Arial",18,"bold"),command=amazon).place(x=870,y=380)
-btn1=Button(a,text="Flipcart",bd=9,bg="blue",font=("Arial",18,"bold"),command=flipcart).place(x=1100,y=380)
+btn=Button(a,text="Search",bd=7,font=("Arial",18,"bold"),command=search).place(x=860,y=160)
+bt1=Button(a,text="Speak",bd=7,font=("Arial",18,"bold"),command=speak).place(x=990,y=160)
+btn1=Button(a,text="YouTube",bd=7,font=("Arial",18,"bold"),command=you_tube).place(x=40,y=280)
+btn1=Button(a,text="Facebook",bd=7,font=("Arial",18,"bold"),command=facebook).place(x=315,y=280)
+btn1=Button(a,text="Instagram",bd=7,font=("Arial",18,"bold"),command=instagram).place(x=560,y=280)
+btn1=Button(a,text="Gmail",bd=7,font=("Arial",18,"bold"),command=gmail).place(x=870,y=280)
+btn1=Button(a,text="Chrome",bd=7,font=("Arial",18,"bold"),command=chrome).place(x=1100,y=280)
 
-btn1=Button(a,text="Stack Overflow",bd=9,bg="red",font=("Arial",18,"bold"),command=st_over).place(x=10,y=480)
-btn1=Button(a,text="Switch Window",bd=9,bg="orange",font=("Arial",18,"bold"),command=sw_window).place(x=280,y=480)
-btn1=Button(a,text="Notepad",bd=9,font=("Arial",18,"bold"),command=notepad).place(x=575,y=480)
-btn1=Button(a,text="Close Window",bd=9,bg="blue",font=("Arial",18,"bold"),command=cl_window).place(x=835,y=480)
-btn1=Button(a,text="Shut Down",bd=9,bg="yellow",font=("Arial",18,"bold"),command=st_down).place(x=1080,y=480)
+btn1=Button(a,text="Edge",bd=7,font=("Arial",18,"bold"),command=edge).place(x=55,y=380)
+btn1=Button(a,text="Dev C++",bd=7,font=("Arial",18,"bold"),command=dev).place(x=325,y=380)
+btn1=Button(a,text="Window Lock",bd=7,font=("Arial",18,"bold"),command=win_lock).place(x=540,y=380)
+btn1=Button(a,text="Amazon",bd=7,font=("Arial",18,"bold"),command=amazon).place(x=870,y=380)
+btn1=Button(a,text="Flipcart",bd=7,font=("Arial",18,"bold"),command=flipcart).place(x=1100,y=380)
 
-btn1=Button(a,text="Restart",bd=9,bg="yellow",font=("Arial",18,"bold"),command=restart).place(x=50,y=580)
-btn1=Button(a,text="Sleep",bd=9,bg="violet",font=("Arial",18,"bold"),command=sleep).place(x=335,y=580)
-btn1=Button(a,text="News",bd=9,bg="orange",font=("Arial",18,"bold"),command=news).place(x=590,y=580)
-btn1=Button(a,text="Whatsapp",bd=9,bg="green",font=("Arial",18,"bold"),command=whatsapp).place(x=865,y=580)
-btn1=Button(a,text="Music",bd=9,bg="brown",font=("Arial",18,"bold"),command=music).place(x=1110,y=580)
-lbn=Label(a,text="=============================================================================================================================================================").place(x=0,y=655)
-lbn=Label(a,text="=============================================================================================================================================================").place(x=0,y=670)
+btn1=Button(a,text="Stack Overflow",bd=7,font=("Arial",18,"bold"),command=st_over).place(x=10,y=480)
+btn1=Button(a,text="Switch Window",bd=7,font=("Arial",18,"bold"),command=sw_window).place(x=280,y=480)
+btn1=Button(a,text="Notepad",bd=7,font=("Arial",18,"bold"),command=notepad).place(x=575,y=480)
+btn1=Button(a,text="Close Window",bd=7,font=("Arial",18,"bold"),command=cl_window).place(x=835,y=480)
+btn1=Button(a,text="Shut Down",bd=7,font=("Arial",18,"bold"),command=st_down).place(x=1080,y=480)
+
+btn1=Button(a,text="Restart",bd=7,font=("Arial",18,"bold"),command=restart).place(x=50,y=580)
+btn1=Button(a,text="Sleep",bd=7,font=("Arial",18,"bold"),command=sleep).place(x=335,y=580)
+btn1=Button(a,text="News",bd=7,font=("Arial",18,"bold"),command=news).place(x=590,y=580)
+btn1=Button(a,text="Whatsapp",bd=7,font=("Arial",18,"bold"),command=whatsapp).place(x=865,y=580)
+btn1=Button(a,text="Music",bd=7,font=("Arial",18,"bold"),command=music).place(x=1110,y=580)
 a.mainloop()
